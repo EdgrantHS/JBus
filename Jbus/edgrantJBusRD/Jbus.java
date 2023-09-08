@@ -11,7 +11,7 @@ public class Jbus
 {
     public static void main(String string[])
     {
-        System.out.println(getDiscountPercentage(1000,900));
+        
     }
     
     /**
