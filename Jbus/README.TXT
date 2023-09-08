@@ -6,7 +6,7 @@ all they need to know. The comments should usually include at least:
 
 PROJECT TITLE: JBus
 PURPOSE OF PROJECT:
-VERSION or DATE:
+VERSION or DATE: 1.0.0
 HOW TO START THIS PROJECT:
 AUTHORS:
 USER INSTRUCTIONS:
