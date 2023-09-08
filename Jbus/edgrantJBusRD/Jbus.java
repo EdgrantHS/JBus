@@ -11,7 +11,7 @@ public class Jbus
 {
     public static void main(String string[])
     {
-        
+        System.out.println(getDiscountPercentage(1000,900));
     }
     
     /**
@@ -59,8 +59,8 @@ public class Jbus
         }
         else
         {
-            float persen = 1 - (afterDiscount / berforeDiscount);
-            return persen*100;
+            float persen = 1 - ((float)afterDiscount / (float)berforeDiscount);
+            return persen*100f;
         }
     }
     
