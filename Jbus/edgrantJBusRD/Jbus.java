@@ -2,10 +2,10 @@ package edgrantJBusRD;
 
 
 /**
- * Write a description of class Jbus here.
+ * Menghitung harga ticket dengan harga admin dan juga terdapat diskon
  *
- * @author (your name)
- * @version (a version number or a date)
+ * @author Edgrant Henderson Suryajaya
+ * @version 1.0.0
  */
 public class Jbus
 {
