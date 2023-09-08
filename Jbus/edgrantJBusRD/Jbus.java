@@ -14,74 +14,101 @@ public class Jbus
         int x;
     }
     
+    /**
+     * getBusId - mendapatkan bus id yaitu 0
+     *
+     * @return    0
+     */
     public static int getBusId()
     {
         return 0;
     }
     
+    /**
+     * getBusName - mendapatkan nama bus yaitu Bus
+     *
+     * @return    "Bus"
+     */
     public static String getBusName()
     {
-        return "0";
+        return "Bus";
     }
     
+    /**
+     * isDiscount - mendapatkan nama apakah diskon yaitu iya
+     *
+     * @return    true
+     */
     public static boolean isDiscount()
     {
         return true;
     }
     
     /**
-     * An example of a method - replace this comment with your own
+     * getDiscountPercentage - menghitung persentasi diskon
      *
-     * @param  y  a sample parameter for a method
-     * @return    the sum of x and y
+     * @param  berforeDiscount  harga sebelum diskon
+     * @param  afterDiscount  harga setelah diskon
+     * @return    persentase diskon untuk menyebabkan harga sebelum jadi setelah
      */
-    public static float getDiscountPercentage(int a, int b)
+    public static float getDiscountPercentage(int berforeDiscount, int afterDiscount)
     {
-        return 0;
+        if (afterDiscount <= berforeDiscount)
+        {
+            return 0.0f;
+        }
+        else
+        {
+            float persen = 1 - (afterDiscount / berforeDiscount);
+            return persen*100;
+        }
     }
     
-    /**
-     * An example of a method - replace this comment with your own
-     *
-     * @param  y  a sample parameter for a method
-     * @return    the sum of x and y
-     */
-    public static int getOriginalPrice(int a, float persen)
+    public static int getDiscountedPrice(int price, float discountPercentage)
     {
-        return 0;
+        float discountedPrice;
+        if (discountPercentage >= 100) 
+        {
+            return 0;
+        }
+        else
+        {
+            discountedPrice = (1 - discountPercentage/100) * price;
+            return (int) discountedPrice; //!cek ini return bener atau gak
+        }
     }
     
-    /**
-     * An example of a method - replace this comment with your own
-     *
-     * @param  y  a sample parameter for a method
-     * @return    the sum of x and y
-     */
+    public static int getOriginalPrice(int discountedPrice, float discountPercentage)
+    {
+        float originalPrice;
+        if (discountPercentage >= 100) 
+        {
+            return 0;
+        }
+        else
+        {
+            originalPrice = discountedPrice / (1 - discountPercentage/100);
+            return (int) originalPrice; //!cek ini return bener atau gak
+        }
+    }
+    
     public static float getAdminFeePercentage()
     {
-        return 0;
+        return 0.05f;
     }
     
-    /**
-     * An example of a method - replace this comment with your own
-     *
-     * @param  y  a sample parameter for a method
-     * @return    the sum of x and y
-     */
-    public static int getAdminFee(int a)
+    public static int getAdminFee(int price)
     {
-        return 0;
+        float adminFee = price * getAdminFeePercentage();
+        return (int) adminFee; //!cek ini return bener atau gak
     }
     
-    /**
-     * An example of a method - replace this comment with your own
-     *
-     * @param  y  a sample parameter for a method
-     * @return    the sum of x and y
-     */
-    public static int getTotalPrice(int a, int b)
+    public static int getTotalPrice(int price, int numberOfSeat)
     {
-        return 0;
+        int priceWithoutAdmin = price * numberOfSeat;
+        int priceAfterAdmin = priceWithoutAdmin - getAdminFee(priceWithoutAdmin);
+        
+        return priceAfterAdmin;
     }
     /*
     public Jbus()
