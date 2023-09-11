@@ -1,5 +1,5 @@
 #BlueJ class context
-comment0.target=Jbus
+comment0.target=JBus
 comment0.text=\r\n\ Menghitung\ harga\ ticket\ dengan\ harga\ admin\ dan\ juga\ terdapat\ diskon\r\n\r\n\ @author\ Edgrant\ Henderson\ Suryajaya\r\n\ @version\ 1.0.0\r\n
 comment1.params=string
 comment1.target=void\ main(java.lang.String[])

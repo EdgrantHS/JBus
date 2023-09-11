@@ -7,15 +7,11 @@ package edgrantJBusRD;
  * @author Edgrant Henderson Suryajaya
  * @version 1.0.0
  */
-public class Jbus
+public class JBus
 {
     public static void main(String string[])
     {
-<<<<<<< HEAD
-        System.out.println(getDiscountPercentage(100, 90));
-=======
-        System.out.println(getDiscountPercentage(1000,900));
->>>>>>> parent of 62646ce (CS01 - telat, remove command di main)
+
     }
     
     /**
