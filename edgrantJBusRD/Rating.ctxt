@@ -11,5 +11,5 @@ comment3.target=long\ getTotal()
 comment4.params=
 comment4.target=long\ getCount()
 comment5.params=
-comment5.target=long\ getAverage()
+comment5.target=double\ getAverage()
 numComments=6

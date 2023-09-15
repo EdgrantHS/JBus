@@ -46,6 +46,10 @@ public class Price
      * @return    the sum of x and y
      */
 
+    /*public double tes(){
+        return getRebatedPrice();
+    }*/
+    
     private double getDiscountedPrice()
     {
         double hargaAkhir;

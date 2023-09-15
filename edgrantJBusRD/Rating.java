@@ -39,8 +39,8 @@ public class Rating
         return this.count;
     }
     
-    public long getAverage()
+    public double getAverage()
     {
-        return count != 0 ? this.total/this.count : 0;
+        return count != 0 ? (double)this.total/this.count : 0;
     }
 }
