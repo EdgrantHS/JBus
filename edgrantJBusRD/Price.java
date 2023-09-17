@@ -59,7 +59,7 @@ public class Price
             return 0.0;
         }
         
-        hargaAkhir = ((float)(100 - this.discount)/100.0) * this.price;
+        hargaAkhir = ((double)(100 - this.discount)/100.0) * this.price;
         return hargaAkhir;
     }
     
