@@ -16,12 +16,12 @@ public class Voucher
     public int code;
     public Type type;
     
-    /*public static void main(){
-        Voucher v = new Voucher("h", 3, Type.DISCOUNT, 3000, 40);
-        Price p = new Price(10000);
+    public static void main(){
+        Voucher v = new Voucher("h", 3, Type.DISCOUNT, 30000, 25);
+        Price p = new Price(200000);
         
         System.out.println(v.apply(p));
-    }*/
+    }
     
     public Voucher(String name, int code, Type type, double minimum, double cut)
     {
@@ -35,17 +35,25 @@ public class Voucher
     
     public double apply(Price price)
     {
-        double appliedPrice = -1;
+        double appliedPrice = price.price;
+        
+        if (canApply(price)){
+            if (this.type == Type.REBATE){
+                appliedPrice = price.price - cut;
+                if (appliedPrice < 0){
+                    return 0;
+                }
+            }
+            
+            if (this.type == Type.DISCOUNT){
+                if (cut >= 100){
+                    return 0;
+                }
+                appliedPrice = price.price - (cut/100 * price.price);
+            }   
+        }
         
         used = true;
-        if (this.type == Type.REBATE){
-            appliedPrice = price.price - cut;
-        }
-        
-        if (this.type == Type.DISCOUNT){
-            appliedPrice = price.price - (cut/100 * price.price);
-        }
-        
         return appliedPrice;
     }
     
@@ -57,12 +65,11 @@ public class Voucher
     
     public boolean canApply(Price price)
     {
-        if (price.price > this.minimum){
-            if (!used){
-                return true;
-            }
+        if ((price.price > this.minimum) && (!isUsed())){
+            return true;
         }
-        
-        return false;
+        else{
+            return false;   
+        }
     }
 }
