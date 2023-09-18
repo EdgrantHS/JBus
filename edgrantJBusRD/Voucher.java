@@ -16,12 +16,12 @@ public class Voucher
     public int code;
     public Type type;
     
-    public static void main(){
-        Voucher v = new Voucher("h", 3, Type.REBATE, 3000, 5000);
+    /*public static void main(){
+        Voucher v = new Voucher("h", 3, Type.DISCOUNT, 3000, 40);
         Price p = new Price(10000);
         
         System.out.println(v.apply(p));
-    }
+    }*/
     
     public Voucher(String name, int code, Type type, double minimum, double cut)
     {
