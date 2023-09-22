@@ -1,6 +1,6 @@
 package edgrantJBusRD;
 
-public class Account
+public class Account extends Serializable
 {
     // instance variables - replace the example below with your own
     public String email, name, password;
@@ -8,9 +8,12 @@ public class Account
     /**
      * Constructor for objects of class Account
      */
-    public Account()
+    public Account(int id, String name, String email, String password)
     {
-        // initialise instance variables
+        super(id);
+        this.name = name;
+        this.email = email;
+        this.password = password;
     }
 
 }

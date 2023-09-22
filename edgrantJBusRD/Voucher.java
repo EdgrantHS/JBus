@@ -7,7 +7,7 @@ package edgrantJBusRD;
  * @author (your name)
  * @version (a version number or a date)
  */
-public class Voucher
+public class Voucher extends Serializable
 {
     // instance variables - replace the example below with your own
     public String name;
@@ -16,15 +16,9 @@ public class Voucher
     public int code;
     public Type type;
     
-    public static void main(){
-        Voucher v = new Voucher("h", 3, Type.DISCOUNT, 30000, 25);
-        Price p = new Price(200000);
-        
-        System.out.println(v.apply(p));
-    }
-    
-    public Voucher(String name, int code, Type type, double minimum, double cut)
+    public Voucher(int id, String name, int code, Type type, double minimum, double cut)
     {
+        super(id);
         this.name = name;
         this.code = code;
         this.type = type;
