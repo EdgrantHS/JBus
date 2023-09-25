@@ -18,4 +18,12 @@ public class Price
         this.price = price;
         this.rebate = rebate;
     }
+    
+    public String toString(){
+        return (
+            "" + 
+            this.price + " " +
+            this.rebate
+        );
+    }
 }

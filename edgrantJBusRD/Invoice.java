@@ -1,18 +1,26 @@
 package edgrantJBusRD;
 
-
-/**
- * Write a description of class Invoice here.
- *
- * @author (your name)
- * @version (a version number or a date)
- */
 public class Invoice extends Serializable
 {
-    // instance variables - replace the example below with your own
+    
+    enum BusRating {
+        NONE,
+        NEUTRAL,
+        GOOD,
+        BAD;
+    }
+    
+    enum PaymentStatus {
+        FAILED,
+        WAITING,
+        SUCCESS;
+    }
+    
     public String time;
     public int buyerId, renterId;
-
+    public BusRating rating;
+    public PaymentStatus status;
+    
     /**
      * Constructor for objects of class Invoice
      */
@@ -22,6 +30,8 @@ public class Invoice extends Serializable
         this.buyerId = buyerId;
         this.renterId = renterId;
         this.time = time;
+        this.rating = BusRating.NONE;
+        this.status = PaymentStatus.WAITING;
     }
     
     public Invoice(int id, Account buyer, Renter renter, String time)
@@ -30,9 +40,11 @@ public class Invoice extends Serializable
         this.buyerId = buyer.id;
         this.renterId = renter.id;
         this.time = time;
+        this.rating = BusRating.NONE;
+        this.status = PaymentStatus.WAITING;
     }
 
-    public String print()
+    public String toString()
     {
         return ("" + super.id + " "  + this.buyerId + " " + this.renterId + " " + this.time);
     }

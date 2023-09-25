@@ -33,7 +33,7 @@ public class Payment extends Invoice
         this.busSeat = busSeat;
     }
 
-    public String print()
+    public String toString()
     {
         // put your code here
         return (
