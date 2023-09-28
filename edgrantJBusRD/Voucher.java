@@ -7,7 +7,7 @@ package edgrantJBusRD;
  * @author (your name)
  * @version (a version number or a date)
  */
-public class Voucher extends Serializable
+public class Voucher extends Serializable implements FileParser
 {
     // instance variables - replace the example below with your own
     public String name;
@@ -65,5 +65,13 @@ public class Voucher extends Serializable
         else{
             return false;   
         }
+    }   
+        
+    public Object write(){
+        return this;
+    }
+    
+    public boolean read(String content){
+        return false;
     }
 }

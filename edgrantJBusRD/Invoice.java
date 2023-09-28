@@ -1,4 +1,5 @@
 package edgrantJBusRD;
+import java.util.Calendar;
 
 public class Invoice extends Serializable
 {
@@ -16,25 +17,22 @@ public class Invoice extends Serializable
         SUCCESS;
     }
     
-    public String time;
+    public Calendar time;
     public int buyerId, renterId;
     public BusRating rating;
     public PaymentStatus status;
-    
-    /**
-     * Constructor for objects of class Invoice
-     */
-    protected Invoice(int id, int buyerId, int renterId, String time)
+
+    protected Invoice(int id, int buyerId, int renterId)
     {
         super(id);
         this.buyerId = buyerId;
         this.renterId = renterId;
-        this.time = time;
         this.rating = BusRating.NONE;
         this.status = PaymentStatus.WAITING;
+        this.time = Calendar.getInstance();;
     }
     
-    public Invoice(int id, Account buyer, Renter renter, String time)
+    public Invoice(int id, Account buyer, Renter renter)
     {
         super(id);
         this.buyerId = buyer.id;
@@ -46,6 +44,6 @@ public class Invoice extends Serializable
 
     public String toString()
     {
-        return ("" + super.id + " "  + this.buyerId + " " + this.renterId + " " + this.time);
+        return ("" + super.id + " "  + this.buyerId + " " + this.renterId + " " + this.time.getTime());
     }
 }

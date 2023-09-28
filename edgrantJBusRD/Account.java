@@ -1,13 +1,10 @@
 package edgrantJBusRD;
 
-public class Account extends Serializable
+public class Account extends Serializable implements FileParser
 {
     // instance variables - replace the example below with your own
     public String email, name, password;
 
-    /**
-     * Constructor for objects of class Account
-     */
     public Account(int id, String name, String email, String password)
     {
         super(id);
@@ -24,5 +21,13 @@ public class Account extends Serializable
             this.email + " " +
             this.password
         );
+    }
+    
+    public Object write(){
+        return this;
+    }
+    
+    public boolean read(String content){
+        return false;
     }
 }
