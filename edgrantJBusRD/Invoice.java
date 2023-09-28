@@ -3,14 +3,14 @@ package edgrantJBusRD;
 public class Invoice extends Serializable
 {
     
-    enum BusRating {
+    public enum BusRating {
         NONE,
         NEUTRAL,
         GOOD,
         BAD;
     }
     
-    enum PaymentStatus {
+    public enum PaymentStatus {
         FAILED,
         WAITING,
         SUCCESS;
