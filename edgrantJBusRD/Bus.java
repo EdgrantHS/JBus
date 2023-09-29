@@ -20,7 +20,6 @@ public class Bus extends Serializable implements FileParser
     public BusType busType;
     public City city;
     public List<Schedule> schedules;
-    
 
     public Bus(int id, String name, Facility facility, Price price, int capacity, BusType busType, City city, Station departure, Station arrival)
     {
@@ -67,10 +66,10 @@ public class Bus extends Serializable implements FileParser
     }
 
     public void printSchedule(Schedule schedule){
-        // SimpleDateFormat SDFormat = new SimpleDateFormat("'Tanggal keberangkatan: 'MM dd, yyyy hh:mm:ss");
+        SimpleDateFormat SDFormat = new SimpleDateFormat("'Tanggal keberangkatan: 'MMMM dd, yyyy hh:mm:ss");
         
-        // System.out.println(SDFormat.format(schedule.getTime()));
-        // System.out.println("Daftar kursi dan ketersdiaan");
+        System.out.println(SDFormat.format(schedule.departureSchedule.getTime()));
+        System.out.println("Daftar kursi dan ketersdiaan:");
         System.out.println(schedule.seatAvailability);
     }
 }
