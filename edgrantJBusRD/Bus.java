@@ -1,6 +1,6 @@
 package edgrantJBusRD;
-import java.util.ArrayList;
-import java.util.SimpleDateFormat;
+import java.text.SimpleDateFormat;
+import java.util.*;
 
 /**
  * Write a description of class Bus here.
@@ -71,6 +71,6 @@ public class Bus extends Serializable implements FileParser
         
         // System.out.println(SDFormat.format(schedule.getTime()));
         // System.out.println("Daftar kursi dan ketersdiaan");
-        System.out.println(schedule.seatAvailability.getKey() + " : " + schedule.seatAvailability.getValue());
+        System.out.println(schedule.seatAvailability);
     }
 }
