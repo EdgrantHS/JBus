@@ -32,17 +32,18 @@ public class Payment extends Invoice
     }
 
     public String getDepartureInfo(){
-        SimpleDateFormat SDFormat = new SimpleDateFormat("'Formatted Date:' MM/dd/yyyy");
+        SimpleDateFormat SDFormat = new SimpleDateFormat("MMMM dd, yyyy hh:mm:ss");
         
         return (
-            "" + this.busId + " "   
-            + SDFormat.format(this.departureDate.getTime()) + " " 
-            + this.busSeat  
+            "Payment Id: " + super.id + " Buyer Id: " + super.buyerId
+            + " Renter Id: " + super.renterId
+            + " Departure Date: " + SDFormat.format(this.departureDate.getTime()) 
+            + " Bus Seat: " + this.busSeat  
         );
     }
 
     public String getTime(){
-        SimpleDateFormat SDFormat = new SimpleDateFormat("MM dd, yyyy hh:mm:ss");
+        SimpleDateFormat SDFormat = new SimpleDateFormat("MMMM dd, yyyy hh:mm:ss");
 
         return SDFormat.format(super.time.getTime());
     }
