@@ -1,5 +1,6 @@
 package edgrantJBusRD;
-
+import java.util.ArrayList;
+import java.util.SimpleDateFormat;
 
 /**
  * Write a description of class Bus here.
@@ -18,6 +19,7 @@ public class Bus extends Serializable implements FileParser
     public int capacity;
     public BusType busType;
     public City city;
+    public List<Schedule> schedules;
     
 
     public Bus(int id, String name, Facility facility, Price price, int capacity, BusType busType, City city, Station departure, Station arrival)
@@ -31,6 +33,8 @@ public class Bus extends Serializable implements FileParser
         this.city = city;
         this.departure = departure;
         this.arrival = arrival;
+
+        this.schedules = new ArrayList<Schedule>();
     }
 
     public String toString(){
@@ -56,4 +60,17 @@ public class Bus extends Serializable implements FileParser
     public boolean read(String content){
         return false;
     }    
+
+    public void addSchedule(Calendar calendar){
+        Schedule schedule = new Schedule(calendar, capacity);
+        this.schedules.add(schedule);
+    }
+
+    public void printSchedule(Schedule schedule){
+        // SimpleDateFormat SDFormat = new SimpleDateFormat("'Tanggal keberangkatan: 'MM dd, yyyy hh:mm:ss");
+        
+        // System.out.println(SDFormat.format(schedule.getTime()));
+        // System.out.println("Daftar kursi dan ketersdiaan");
+        System.out.println(schedule.seatAvailability.getKey() + " : " + schedule.seatAvailability.getValue());
+    }
 }

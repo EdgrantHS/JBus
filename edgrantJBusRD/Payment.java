@@ -1,50 +1,50 @@
 package edgrantJBusRD;
+import java.util.Calendar;
+import java.text.SimpleDateFormat;
 
-
-/**
- * Write a description of class Payment here.
- *
- * @author (your name)
- * @version (a version number or a date)
- */
 public class Payment extends Invoice
 {
-    // instance variables - replace the example below with your own
     private int busId;
-    public String departureDate, busSeat;
+    public String busSeat;
+    public Calendar departureDate; 
 
-    /**
-     * Constructor for objects of class Payment
-     */
-    public Payment(int id, int buyerId, int renterId, String time, int busId, String departureDate, String busSeat)
+    public Payment(int id, int buyerId, int renterId, String time, int busId, String busSeat)
     {
         super(id, buyerId, renterId);
         this.busId = busId;
-        this.departureDate = departureDate;
+        this.departureDate = Calendar.getInstance();
         this.busSeat = busSeat;
+
+        //tambah 2 hari ke departure date
+        this.departureDate.add(Calendar.DATE, 2);
     }
     
     
-    public Payment(int id, Account account, Renter renter, String time, int busId, String departureDate, String busSeat)
+    public Payment(int id, Account account, Renter renter, String time, int busId, String busSeat)
     {
         super(id, account, renter);
         this.busId = busId;
-        this.departureDate = departureDate;
+        this.departureDate = Calendar.getInstance();
         this.busSeat = busSeat;
+
+        //tambah 2 hari ke departure date
+        this.departureDate.add(Calendar.DATE, 2);
     }
 
-    public String toString()
-    {
-        // put your code here
+    public String getDepartureInfo(){
+        SimpleDateFormat SDFormat = new SimpleDateFormat("'Formatted Date:' MM/dd/yyyy");
+        
         return (
-            "" + super.id + " " 
-            + super.buyerId + " " 
-            + super.renterId + " " 
-            + super.time + " "          
-            + this.busId + " "   
-            + this.departureDate + " " 
+            "" + this.busId + " "   
+            + SDFormat.format(this.departureDate.getTime()) + " " 
             + this.busSeat  
         );
+    }
+
+    public String getTime(){
+        SimpleDateFormat SDFormat = new SimpleDateFormat("MM dd, yyyy hh:mm:ss");
+
+        return SDFormat.format(super.time.getTime());
     }
     
     public int getBusId(){

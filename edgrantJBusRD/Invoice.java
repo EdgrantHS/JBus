@@ -27,9 +27,9 @@ public class Invoice extends Serializable
         super(id);
         this.buyerId = buyerId;
         this.renterId = renterId;
-        this.rating = BusRating.NONE;
+        this.rating = BusRating.NONE; 
         this.status = PaymentStatus.WAITING;
-        this.time = Calendar.getInstance();;
+        this.time = Calendar.getInstance(); //!TIME MASIH SALAH
     }
     
     public Invoice(int id, Account buyer, Renter renter)
