@@ -24,7 +24,7 @@ public class Schedule
     }*/
     
     public boolean isSeatAvailable(String seat) {
-        System.out.println("MASUK SEAT AVAILABLE : " + seat);
+        //System.out.println("MASUK SEAT AVAILABLE : " + seat);
         return seatAvailability.getOrDefault(seat, false);
     }
 
