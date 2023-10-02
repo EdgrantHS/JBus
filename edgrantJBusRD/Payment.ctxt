@@ -1,13 +1,17 @@
 #BlueJ class context
 comment0.target=Payment
-comment1.params=id\ buyerId\ renterId\ busId\ busSeat
-comment1.target=Payment(int,\ int,\ int,\ int,\ java.lang.String)
-comment2.params=id\ account\ renter\ busId\ busSeat
-comment2.target=Payment(int,\ Account,\ Renter,\ int,\ java.lang.String)
+comment1.params=id\ buyerId\ renterId\ busId\ busSeat\ departureDate
+comment1.target=Payment(int,\ int,\ int,\ int,\ java.lang.String,\ java.sql.Timestamp)
+comment2.params=id\ account\ renter\ busId\ busSeat\ departureDate
+comment2.target=Payment(int,\ Account,\ Renter,\ int,\ java.lang.String,\ java.sql.Timestamp)
 comment3.params=
 comment3.target=java.lang.String\ getDepartureInfo()
-comment4.params=
-comment4.target=java.lang.String\ getTime()
-comment5.params=
-comment5.target=int\ getBusId()
-numComments=6
+comment4.params=departureSchedule\ seat\ bus
+comment4.target=boolean\ isAvailable(java.sql.Timestamp,\ java.lang.String,\ Bus)
+comment5.params=departureSchedule\ seat\ bus
+comment5.target=boolean\ makeBooking(java.sql.Timestamp,\ java.lang.String,\ Bus)
+comment6.params=
+comment6.target=java.lang.String\ getTime()
+comment7.params=
+comment7.target=int\ getBusId()
+numComments=8

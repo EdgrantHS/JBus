@@ -1,13 +1,8 @@
 package edgrantJBusRD;
 import java.text.SimpleDateFormat;
 import java.util.*;
+import java.sql.Timestamp;
 
-/**
- * Write a description of class Bus here.
- *
- * @author (your name)
- * @version (a version number or a date)
- */
 public class Bus extends Serializable implements FileParser
 {
     // instance variables - replace the example below with your own
@@ -60,16 +55,16 @@ public class Bus extends Serializable implements FileParser
         return false;
     }    
 
-    public void addSchedule(Calendar calendar){
-        Schedule schedule = new Schedule(calendar, this.capacity);
-        this.schedules.add(schedule);
+    public void addSchedule(Timestamp schedule) { 
+        schedules.add(new Schedule(schedule, this.capacity));
     }
 
-    public void printSchedule(Schedule schedule){
+    
+    /*public void printSchedule(Schedule schedule){
         SimpleDateFormat SDFormat = new SimpleDateFormat("'Tanggal keberangkatan: 'MMMM dd, yyyy hh:mm:ss");
         
         System.out.println(SDFormat.format(schedule.departureSchedule.getTime()));
         System.out.println("Daftar kursi dan ketersdiaan:");
         System.out.println(schedule.seatAvailability);
-    }
+    }*/
 }

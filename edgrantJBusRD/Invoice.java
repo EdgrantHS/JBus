@@ -1,5 +1,5 @@
 package edgrantJBusRD;
-import java.util.Calendar;
+import java.sql.Timestamp;
 
 public class Invoice extends Serializable
 {
@@ -17,7 +17,7 @@ public class Invoice extends Serializable
         SUCCESS;
     }
     
-    public Calendar time;
+    public Timestamp time;
     public int buyerId, renterId;
     public BusRating rating;
     public PaymentStatus status;
@@ -28,8 +28,8 @@ public class Invoice extends Serializable
         this.buyerId = buyerId;
         this.renterId = renterId;
         this.rating = BusRating.NONE; 
-        this.status = PaymentStatus.WAITING;
-        this.time = Calendar.getInstance(); //!TIME MASIH SALAH
+        this.status = status.WAITING;
+        this.time = new Timestamp(System.currentTimeMillis());
     }
     
     public Invoice(int id, Account buyer, Renter renter)
