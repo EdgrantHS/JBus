@@ -37,9 +37,9 @@ public class Invoice extends Serializable
         super(id);
         this.buyerId = buyer.id;
         this.renterId = renter.id;
-        this.time = time;
+        this.time = new Timestamp(System.currentTimeMillis());
         this.rating = BusRating.NONE;
-        this.status = PaymentStatus.WAITING;
+        this.status = status.WAITING;
     }
 
     public String toString()
