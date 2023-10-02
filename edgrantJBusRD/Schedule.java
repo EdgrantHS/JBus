@@ -9,11 +9,11 @@ public class Schedule
     public Map<String, Boolean> seatAvailability;
 
     public Schedule(Timestamp departureSchedule, int numberOfSeats){
-        this.departureSchedule = new Timestamp(System.currentTimeMillis());
+        this.departureSchedule = departureSchedule;
         this.initializeSeatAvailability(numberOfSeats);
     }
 
-    private void initializeSeatAvailability(int numberOfSeats){
+    /*private void initializeSeatAvailability(int numberOfSeats){
         LinkedHashMap<String, Boolean> seatAvailability = new LinkedHashMap<String, Boolean>();
 
         for (int seatNumber = 1; seatNumber <= numberOfSeats; seatNumber++){
@@ -21,25 +21,26 @@ public class Schedule
         }
 
         this.seatAvailability = seatAvailability;
-    }
+    }*/
     
-    public boolean isSeatAvailable(String seat){
-        if (seatAvailability.containsKey(seat)) {
-            return seatAvailability.get(seat);
-        } else {
-            return false;
-        }
+    public boolean isSeatAvailable(String seat) {
+        System.out.println("MASUK SEAT AVAILABLE : " + seat);
+        return seatAvailability.getOrDefault(seat, false);
     }
-    
+
     public void bookSeat(String seat){
         this.seatAvailability.put(seat, false);
     }
     
-    public void initializedSeatAvailability(int numberOfSeats){
+    public void initializeSeatAvailability(int numberOfSeats){
+        LinkedHashMap<String, Boolean> seatAvailability = new LinkedHashMap<String, Boolean>();
+        
         for (int seatNumber = 1; seatNumber <= numberOfSeats; seatNumber++){
             String sn = seatNumber < 10 ? "0" + seatNumber : "" + seatNumber;//ohhh ini untuk kalau kurang dari 10: 00,01,02..09
             seatAvailability.put("RD" + sn, true);
         }
+
+        this.seatAvailability = seatAvailability;
     }
     
     public void printSchedule() {

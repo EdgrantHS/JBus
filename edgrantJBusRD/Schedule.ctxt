@@ -2,14 +2,13 @@
 comment0.target=Schedule
 comment1.params=departureSchedule\ numberOfSeats
 comment1.target=Schedule(java.sql.Timestamp,\ int)
-comment2.params=numberOfSeats
-comment2.target=void\ initializeSeatAvailability(int)
+comment2.params=seat
+comment2.target=boolean\ isSeatAvailable(java.lang.String)
+comment2.text=private\ void\ initializeSeatAvailability(int\ numberOfSeats){\r\n\ \ \ \ \ \ \ \ LinkedHashMap<String,\ Boolean>\ seatAvailability\ \=\ new\ LinkedHashMap<String,\ Boolean>();\r\n\r\n\ \ \ \ \ \ \ \ for\ (int\ seatNumber\ \=\ 1;\ seatNumber\ <\=\ numberOfSeats;\ seatNumber++){\r\n\ \ \ \ \ \ \ \ \ \ \ \ seatAvailability.put("RD"\ +\ seatNumber,\ true);\r\n\ \ \ \ \ \ \ \ }\r\n\r\n\ \ \ \ \ \ \ \ this.seatAvailability\ \=\ seatAvailability;\r\n}
 comment3.params=seat
-comment3.target=boolean\ isSeatAvailable(java.lang.String)
-comment4.params=seat
-comment4.target=void\ bookSeat(java.lang.String)
-comment5.params=numberOfSeats
-comment5.target=void\ initializedSeatAvailability(int)
-comment6.params=
-comment6.target=void\ printSchedule()
-numComments=7
+comment3.target=void\ bookSeat(java.lang.String)
+comment4.params=numberOfSeats
+comment4.target=void\ initializeSeatAvailability(int)
+comment5.params=
+comment5.target=void\ printSchedule()
+numComments=6

@@ -38,7 +38,13 @@ public class Payment extends Invoice
     
     public static boolean isAvailable(Timestamp departureSchedule, String seat, Bus bus){
         for (Schedule schedule : bus.schedules) {
+            //System.out.println("MASUK isAvailable");       
+            //System.out.println("DEBUG  " + schedule.departureSchedule.equals(departureSchedule));
+            //System.out.println("DEBUG  " + schedule.departureSchedule);
+            //System.out.println("DEBUGMAP  " + schedule.seatAvailability);
+            
             if (schedule.departureSchedule.equals(departureSchedule)) {
+                //System.out.println("MASUK  " + schedule.departureSchedule);
                 return schedule.isSeatAvailable(seat);
             } 
         }
@@ -48,9 +54,10 @@ public class Payment extends Invoice
     public static boolean makeBooking(Timestamp departureSchedule, String seat, Bus bus){
         if (isAvailable(departureSchedule, seat, bus)) {
             for (Schedule schedule : bus.schedules) {
+                //System.out.println("MASUK make booking");      
                 schedule.bookSeat(seat);
-                return true;
             }
+            return true;
         }
         return false;
     }
