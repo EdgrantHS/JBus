@@ -19,8 +19,8 @@ public class Serializable
     }
 
     public boolean equals(Object obj){
-        Serializable temp = (Serializable) obj;
-        return (temp instanceof Serializable) && (temp.id == this.id);
+//        Serializable temp = ((Serializable) obj);
+        return obj instanceof Serializable && (((Serializable) obj).id == this.id);
     }
 
     public boolean booleancompareTo(Serializable obj){
