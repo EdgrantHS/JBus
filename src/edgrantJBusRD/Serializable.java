@@ -23,8 +23,8 @@ public class Serializable
         return obj instanceof Serializable && (((Serializable) obj).id == this.id);
     }
 
-    public boolean booleancompareTo(Serializable obj){
-        return obj != null && obj.getClass() == this.getClass() && obj.id == this.id;
+    public int compareTo(Serializable obj){
+        return Integer.compare(obj.id, this.id);
     }
 
     //test
