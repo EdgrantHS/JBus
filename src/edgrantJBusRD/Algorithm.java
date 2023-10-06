@@ -60,7 +60,7 @@ public class Algorithm{
 
         while (iterator.hasNext()) {
             T current = iterator.next();
-            if (exists(iterator, pred)){
+            if (pred.predicate(current)){
                 counter++;
             }
         }
@@ -91,7 +91,7 @@ public class Algorithm{
     public static <T> T find(Iterator<T> iterator, Predicate<T> pred) {
         while (iterator.hasNext()) {
             T current = iterator.next();
-            if (exists(iterator, pred)) {
+            if (pred.predicate(current)) {
                 return current;
             }
         }
@@ -124,7 +124,7 @@ public class Algorithm{
 
         while (iterator.hasNext()) {
             T current = iterator.next();
-            if (exists(iterator, pred)) {
+            if (pred.predicate(current)) {
                 output.add(current);
             }
         }
