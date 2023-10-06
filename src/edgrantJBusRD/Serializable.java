@@ -27,7 +27,7 @@ public class Serializable
         return obj != null && obj.getClass() == this.getClass() && obj.id == this.id;
     }
 
-
+    //test
 
     protected Serializable(int id)
     {
