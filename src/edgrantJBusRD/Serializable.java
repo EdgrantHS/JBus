@@ -1,23 +1,40 @@
 package edgrantJBusRD;
+import java.util.HashMap;
+import java.util.Objects;
 
-
-/**
- * Write a description of class Serializable here.
- *
- * @author (your name)
- * @version (a version number or a date)
- */
 public class Serializable
 {
-    // instance variables - replace the example below with your own
     public final int id;
+    private static HashMap<Class<?>, Integer> mapCounter = new HashMap<>();
 
-    /**
-     * Constructor for objects of class Serializable
-     */
-    public Serializable(int id)
+    public static Integer getLastAssignedId(Class<?> obj){
+        return mapCounter.getOrDefault(obj, 0);
+    }
+    public static Integer setLastAssignedId(Class<?> obj, int id){
+        return mapCounter.replace(obj, id);
+    }
+
+    public boolean equals(Serializable obj){
+       return compareTo(obj);
+    }
+
+    public boolean compareTo(Serializable obj){
+        return obj.getClass() == this.getClass() && obj.id == this.id;
+    }
+
+//    public boolean equals(Objects obj){
+//        boolean b = (obj instanceof Serializable) && (((this) obj).id == this.id);
+//        return b;
+//    }
+
+
+
+    protected Serializable(int id)
     {
-        this.id = id;
+        Class<?> obj = this.getClass();
+        int lastId = getLastAssignedId(obj);
+        this.id = lastId + 1;
+        mapCounter.put(obj, this.id);
     }
 
 }
