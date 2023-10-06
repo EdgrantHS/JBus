@@ -7,25 +7,25 @@ public class Serializable
     public final int id;
     private static HashMap<Class<?>, Integer> mapCounter = new HashMap<>();
 
-    public static Integer getLastAssignedId(Class<?> obj){
+    public static<T> Integer getLastAssignedId(Class<T> obj){
         return mapCounter.getOrDefault(obj, 0);
     }
-    public static Integer setLastAssignedId(Class<?> obj, int id){
+    public static<T> Integer setLastAssignedId(Class<T> obj, int id){
         return mapCounter.replace(obj, id);
     }
 
     public boolean equals(Serializable obj){
-       return compareTo(obj);
+        return (obj != null) && (obj.id == this.id);
     }
 
-    public boolean compareTo(Serializable obj){
-        return obj.getClass() == this.getClass() && obj.id == this.id;
+    public boolean equals(Object obj){
+        Serializable temp = (Serializable) obj;
+        return (temp instanceof Serializable) && (temp.id == this.id);
     }
 
-//    public boolean equals(Objects obj){
-//        boolean b = (obj instanceof Serializable) && (((this) obj).id == this.id);
-//        return b;
-//    }
+    public boolean booleancompareTo(Serializable obj){
+        return obj != null && obj.getClass() == this.getClass() && obj.id == this.id;
+    }
 
 
 
