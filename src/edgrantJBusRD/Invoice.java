@@ -22,9 +22,8 @@ public class Invoice extends Serializable
     public BusRating rating;
     public PaymentStatus status;
 
-    protected Invoice(int id, int buyerId, int renterId)
+    protected Invoice(int buyerId, int renterId)
     {
-        super(id);
         this.buyerId = buyerId;
         this.renterId = renterId;
         this.rating = BusRating.NONE; 
@@ -32,9 +31,8 @@ public class Invoice extends Serializable
         this.time = new Timestamp(System.currentTimeMillis());
     }
     
-    public Invoice(int id, Account buyer, Renter renter)
+    public Invoice(Account buyer, Renter renter)
     {
-        super(id);
         this.buyerId = buyer.id;
         this.renterId = renter.id;
         this.time = new Timestamp(System.currentTimeMillis());

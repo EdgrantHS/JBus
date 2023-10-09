@@ -11,9 +11,8 @@ public class Review extends Serializable
 {
     public String date, desc;
     
-    public Review(int id, String date, String desc)
+    public Review(String date, String desc)
     {
-        super(id);
         this.date = date;
         this.desc = desc;
     }

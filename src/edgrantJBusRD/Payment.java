@@ -1,6 +1,7 @@
 package edgrantJBusRD;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
+import java.util.List;
 
 public class Payment extends Invoice
 {
@@ -8,18 +9,18 @@ public class Payment extends Invoice
     public String busSeat;
     public Timestamp departureDate; 
 
-    public Payment(int id, int buyerId, int renterId, int busId, String busSeat, Timestamp departureDate)
+    public Payment(int buyerId, int renterId, int busId, String busSeat, Timestamp departureDate)
     {
-        super(id, buyerId, renterId);
+        super(buyerId, renterId);
         this.busId = busId;
         this.departureDate = departureDate;
         this.busSeat = busSeat;
     }
     
     
-    public Payment(int id, Account account, Renter renter, int busId, String busSeat, Timestamp departureDate)
+    public Payment(Account account, Renter renter, int busId, String busSeat, Timestamp departureDate)
     {
-        super(id, account, renter);
+        super(account, renter);
         this.busId = busId;
         this.departureDate = departureDate;
         this.busSeat = busSeat;
@@ -35,34 +36,70 @@ public class Payment extends Invoice
             + " Bus Seat: " + this.busSeat  
         );
     }
-    
-    public static boolean isAvailable(Timestamp departureSchedule, String seat, Bus bus){
-        for (Schedule schedule : bus.schedules) {
-            //System.out.println("MASUK isAvailable");       
-            //System.out.println("DEBUG  " + schedule.departureSchedule.equals(departureSchedule));
-            //System.out.println("DEBUG  " + schedule.departureSchedule);
-            //System.out.println("DEBUGMAP  " + schedule.seatAvailability);
-            
-            if (schedule.departureSchedule.equals(departureSchedule)) {
-                //System.out.println("MASUK  " + schedule.departureSchedule);
-                return schedule.isSeatAvailable(seat);
-            } 
+
+public static Schedule availableSchedule(Timestamp departureSchedule, String seat, Bus bus) {
+     Schedule schedule = null;
+     for (Schedule current : bus.schedules) {
+         if (current.departureSchedule.equals(departureSchedule)) {
+             schedule = current; break;
+         }
+     }
+     if (schedule == null) {
+         return null;
+     }
+     return schedule.isSeatAvailable(seat) ? schedule : null;
+}
+public static Schedule availableSchedule(Timestamp departureSchedule, List<String> seats, Bus bus) {
+    // Find the schedule that matches the departure time
+    Schedule schedule = null;
+    for (Schedule current : bus.schedules) {
+        if (current.departureSchedule.equals(departureSchedule)) {
+            schedule = current;
+            break;
         }
-        return false;
     }
+    if (schedule == null) {
+        return null;
+    }
+    boolean allSeatsAvailable = true;
+    for (String seat : seats) {
+        if (!schedule.isSeatAvailable(seat)) {
+            allSeatsAvailable = false;
+            break;
+        }
+    }
+    return allSeatsAvailable ? schedule : null;
+}
+
 
     public static boolean makeBooking(Timestamp departureSchedule, String seat, Bus bus){
-        if (isAvailable(departureSchedule, seat, bus)) {
+        boolean isAvailable = false;
+        for (Schedule schedule : bus.schedules) {
+            if (schedule.departureSchedule.equals(departureSchedule)) {
+                return schedule.isSeatAvailable(seat);
+            }
+        }
+        if (isAvailable) {
             for (Schedule schedule : bus.schedules) {
-                //System.out.println("MASUK make booking");      
+                //System.out.println("MASUK make booking");
                 schedule.bookSeat(seat);
             }
             return true;
         }
         return false;
     }
-    
-    
+
+    public static boolean makeBooking(Timestamp departureSchedule, List<String> seats, Bus bus){
+        boolean out = false;
+        boolean temp;
+        for (String seat: seats){
+            temp = makeBooking(departureSchedule, seat, bus);
+            if (!out) out = temp;
+        }
+        return out;
+    }
+
+
     public String getTime(){
         SimpleDateFormat SDFormat = new SimpleDateFormat("MMMM dd, yyyy hh:mm:ss");
 

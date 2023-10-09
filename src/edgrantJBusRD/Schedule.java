@@ -22,27 +22,17 @@ public class Schedule
 
         this.seatAvailability = seatAvailability;
     }*/
-    
-    public boolean isSeatAvailable(String seat) {
-        //System.out.println("MASUK SEAT AVAILABLE : " + seat);
-        return seatAvailability.getOrDefault(seat, false);
-    }
+
 
     public void bookSeat(String seat){
         this.seatAvailability.put(seat, false);
     }
-    
-    private void initializeSeatAvailability(int numberOfSeats){
-        LinkedHashMap<String, Boolean> seatAvailability = new LinkedHashMap<String, Boolean>();
-        
-        for (int seatNumber = 1; seatNumber <= numberOfSeats; seatNumber++){
-            String sn = seatNumber < 10 ? "0" + seatNumber : "" + seatNumber;//ohhh ini untuk kalau kurang dari 10: 00,01,02..09
-            seatAvailability.put("RD" + sn, true);
-        }
 
-        this.seatAvailability = seatAvailability;
+    public void bookSeat(List <String> seat){
+        for (String satuSeat: seat) {
+            this.seatAvailability.put(satuSeat, false);
+        }
     }
-    
     public void printSchedule() {
         SimpleDateFormat dateFormat = new SimpleDateFormat("MMMM d, yyyy HH:mm:ss");
         String formattedDepartureSchedule = dateFormat.format(this.departureSchedule.getTime());
@@ -67,6 +57,33 @@ public class Schedule
         }
         System.out.println("\n");
     }
+    public boolean isSeatAvailable(String seat) {
+        //System.out.println("MASUK SEAT AVAILABLE : " + seat);
+        return seatAvailability.getOrDefault(seat, false);
+    }
+    public boolean isSeatAvailable(List <String> seat) {
+        for (String satuSeat: seat) {
+            if(seatAvailability.getOrDefault(satuSeat, false)) return true;
+        }
+        return false;
+    }
+
+    private void initializeSeatAvailability(int numberOfSeats){
+        LinkedHashMap<String, Boolean> seatAvailability = new LinkedHashMap<String, Boolean>();
+
+        for (int seatNumber = 1; seatNumber <= numberOfSeats; seatNumber++){
+            String sn = seatNumber < 10 ? "0" + seatNumber : "" + seatNumber;
+            seatAvailability.put("RD" + sn, true);
+        }
+
+        this.seatAvailability = seatAvailability;
+    }
+
+    public String toString(){
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-dd-mm HH:mm:ss.s");
+        String formattedDepartureSchedule = dateFormat.format(this.departureSchedule.getTime());
+
+
+        return ("Schedule\t: " + formattedDepartureSchedule + "\nOccupied\t: " + 1 + "/" + this.seatAvailability.size()); //!masih salah
+    }
 }
-
-

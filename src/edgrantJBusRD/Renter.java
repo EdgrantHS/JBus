@@ -16,37 +16,33 @@ public class Renter extends Serializable
     /**
      * Constructor for objects of class Renter
      */
-    public Renter(int id, String companyName)
+    public Renter(String companyName)
     {
         // initialise instance variables
-        super(id);
         this.address = "";
         this.companyName = companyName;
         this.phoneNumber = 0;
     }
 
-    public Renter(int id, String companyName, String address)
+    public Renter(String companyName, String address)
     {
         // initialise instance variables
-        super(id);
         this.address = address;
         this.companyName = companyName;
         this.phoneNumber = 0;
     }
 
-    public Renter(int id, String companyName, int phoneNumber)
+    public Renter(String companyName, int phoneNumber)
     {
         // initialise instance variables
-        super(id);
         this.address = "";
         this.companyName = companyName;
         this.phoneNumber = phoneNumber;
     }
 
-    public Renter(int id, String companyName, int phoneNumber, String address)
+    public Renter(String companyName, int phoneNumber, String address)
     {
-        // initialise instance variables
-        super(id);
+        // initialise instance variablel
         this.address = address;
         this.companyName = companyName;
         this.phoneNumber = phoneNumber;

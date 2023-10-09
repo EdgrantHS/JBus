@@ -24,7 +24,7 @@ public class Serializable
         return mapCounter.replace(obj, id);
     }
 
-    protected Serializable(int id)
+    protected Serializable()
     {
         Class<?> obj = this.getClass();
         int lastId = getLastAssignedId(obj);
