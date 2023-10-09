@@ -73,18 +73,16 @@ public static Schedule availableSchedule(Timestamp departureSchedule, List<Strin
 
 
     public static boolean makeBooking(Timestamp departureSchedule, String seat, Bus bus){
-        boolean isAvailable = false;
+        Schedule temp = null;
         for (Schedule schedule : bus.schedules) {
             if (schedule.departureSchedule.equals(departureSchedule)) {
-                isAvailable = schedule.isSeatAvailable(seat);
+                if(schedule.isSeatAvailable(seat)){
+                    temp = schedule;
+                    temp.bookSeat(seat);
+                    return true;
+                }
+                break;
             }
-        }
-        if (isAvailable) {
-            for (Schedule schedule : bus.schedules) {
-                //System.out.println("MASUK make booking");
-                schedule.bookSeat(seat);
-            }
-            return true;
         }
         return false;
     }
