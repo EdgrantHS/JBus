@@ -7,7 +7,8 @@ public class Payment extends Invoice
 {
     private int busId;
     public String busSeat;
-    public Timestamp departureDate; 
+    public Timestamp departureDate;
+    public static int seatCount = 0;
 
     public Payment(int buyerId, int renterId, int busId, String busSeat, Timestamp departureDate)
     {
@@ -76,7 +77,7 @@ public static Schedule availableSchedule(Timestamp departureSchedule, List<Strin
         boolean isAvailable = false;
         for (Schedule schedule : bus.schedules) {
             if (schedule.departureSchedule.equals(departureSchedule)) {
-                return schedule.isSeatAvailable(seat);
+                isAvailable = schedule.isSeatAvailable(seat);
             }
         }
         if (isAvailable) {
