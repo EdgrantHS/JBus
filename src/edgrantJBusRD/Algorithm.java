@@ -134,26 +134,26 @@ public class Algorithm{
         return output;
     }
 
-    public static <T> List<T> paginate(T[] array, int pageSize, int page, Predicate<T> pred) {
+    public static <T> List<T> paginate(T[] array, int page, int pageSize, Predicate<T> pred) {
         final Iterator<T> it = Arrays.stream(array).iterator();
-        return paginate(it, pageSize, page, pred);
+        return paginate(it, page, pageSize, pred);
     }
-    public static <T> List<T> paginate(Iterable<T> iterable, int pageSize, int page, Predicate<T> pred) {
+    public static <T> List<T> paginate(Iterable<T> iterable, int page, int pageSize, Predicate<T> pred) {
         final Iterator<T> it = iterable.iterator();
-        return paginate(it, pageSize, page, pred);
+        return paginate(it, page, pageSize, pred);
     }
-    public static <T> List<T> paginate(Iterator<T> iterator, int pageSize, int page, Predicate<T> pred) {
+    public static <T> List<T> paginate(Iterator<T> iterator, int page, int pageSize, Predicate<T> pred) {
         List<T> output = new ArrayList<>();
 
         int skipped = 0, added = 0;
-        while (iterator.hasNext() && skipped < pageSize * page) {
+        while (iterator.hasNext() && skipped < page * pageSize) {
             T element = iterator.next();
             if (pred.predicate(element)) {
                 skipped++;
             }
         }
 
-        while (iterator.hasNext() && added < page) {
+        while (iterator.hasNext() && added < pageSize) {
             T element = iterator.next();
             if (pred.predicate(element)) {
                 output.add(element);

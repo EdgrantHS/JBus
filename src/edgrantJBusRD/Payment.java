@@ -8,7 +8,6 @@ public class Payment extends Invoice
     private int busId;
     public String busSeat;
     public Timestamp departureDate;
-    public static int seatCount = 0;
 
     public Payment(int buyerId, int renterId, int busId, String busSeat, Timestamp departureDate)
     {

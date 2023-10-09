@@ -13,17 +13,6 @@ public class Schedule
         this.initializeSeatAvailability(numberOfSeats);
     }
 
-    /*private void initializeSeatAvailability(int numberOfSeats){
-        LinkedHashMap<String, Boolean> seatAvailability = new LinkedHashMap<String, Boolean>();
-
-        for (int seatNumber = 1; seatNumber <= numberOfSeats; seatNumber++){
-            seatAvailability.put("RD" + seatNumber, true);
-        }
-
-        this.seatAvailability = seatAvailability;
-    }*/
-
-
     public void bookSeat(String seat){
         this.seatAvailability.put(seat, false);
     }
@@ -83,7 +72,11 @@ public class Schedule
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-dd-mm HH:mm:ss.s");
         String formattedDepartureSchedule = dateFormat.format(this.departureSchedule.getTime());
 
+        int seatCount = 0;
+        for (boolean var : seatAvailability.values()){
+            if (!var) seatCount++;
+        }
 
-        return ("Schedule\t: " + formattedDepartureSchedule + "\nOccupied\t: " + 1 + "/" + this.seatAvailability.size()); //!masih salah
+        return ("Schedule\t: " + formattedDepartureSchedule + "\nOccupied\t: " + seatCount + "/" + this.seatAvailability.size()); //!masih salah
     }
 }
