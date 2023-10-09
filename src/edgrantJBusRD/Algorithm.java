@@ -6,6 +6,9 @@ import java.util.Iterator;
 import java.util.List;
 
 public class Algorithm{
+    private Algorithm(){
+
+    }
     public static <T> boolean exists(T[] array, T value) {
         final Iterator<T> it = Arrays.stream(array).iterator();
         return exists(it, value);
