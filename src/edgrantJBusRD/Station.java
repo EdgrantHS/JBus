@@ -12,7 +12,11 @@ public class Station extends Serializable
         this.city = city;
     }
 
-    
+
+    public String toString()
+    {
+        return ("" + super.id + " " + this.stationName + " " + this.city + " " + this.address);
+    }
     public String print()
     {
         return ("" + super.id + " " + this.stationName + " " + this.city + " " + this.address);
