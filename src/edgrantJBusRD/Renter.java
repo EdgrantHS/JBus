@@ -12,8 +12,8 @@ import java.util.regex.Pattern;
  */
 public class Renter extends Serializable
 {
-    private final String REGEX_NAME = "[a-zA-Z0-9_]{4,20}";
-    private final String REGEX_PHONE = "[0-9]{9,12}";
+    private final String REGEX_NAME = "/[a-zA-Z0-9_]{4,20}";
+    private final String REGEX_PHONE = "/[0-9]{9,12}";
     public String address, companyName;
     public int phoneNumber;
 
