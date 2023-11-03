@@ -60,26 +60,23 @@ public class Bus extends Serializable {
         schedules.add(new Schedule(schedule, this.capacity));
     }
 
-    public static List<Bus> filterByDeparture(List<Bus> buses, City departure, int page, int pageSize) {
-        try {
-            String filepath =
-                    "C:\\Users\\Edgrant\\OneDrive - UNIVERSITAS INDONESIA\\Desktop\\UI\\Others\\JBus\\data\\buses.json";
-            JsonTable<Bus> busList = new JsonTable<>(Bus.class, filepath);
-            List<Bus> filteredBus =
-                    filterByDeparture(busList, City.JAKARTA, 1, 10);
-            filteredBus.forEach(bus -> System.out.println(bus.toString()));
-        } catch (Throwable t) {
-            t.printStackTrace();
-        }
-
-    
-    /*public void printSchedule(Schedule schedule){
-        SimpleDateFormat SDFormat = new SimpleDateFormat("'Tanggal keberangkatan: 'MMMM dd, yyyy hh:mm:ss");
-        
-        System.out.println(SDFormat.format(schedule.departureSchedule.getTime()));
-        System.out.println("Daftar kursi dan ketersdiaan:");
-        System.out.println(schedule.seatAvailability);
-    }*/
-        return buses;
+    public static List<Bus> filterByDeparture(List<Bus> buses, City departure, int page, int pageSize){
+        List<Bus> newBuses = new ArrayList<>();
+        newBuses.add(Algorithm.<Bus>find(buses, s -> s.departure.city == departure));
+        return Algorithm.paginate(newBuses.iterator(), page, pageSize, t -> true);
     }
+    public static List<Bus> filterByPrice(List<Bus> buses, int min, int max) {
+        List<Bus> newBuses = new ArrayList<>();
+        newBuses.add(Algorithm.<Bus>find(buses, s -> s.price.price >= min && s.price.price <= max));
+        return newBuses;
+    }
+    public static Bus filterByPrice(List<Bus> buses, int id) {
+        return Algorithm.<Bus>find(buses, s -> s.id == id);
+    }
+    public static List<Bus> filterByDepartureAndArival(List<Bus> buses, City departure, City arrival, int page, int pageSize) {
+        List<Bus> newBuses = new ArrayList<>();
+        newBuses.add(Algorithm.<Bus>find(buses, s -> s.departure.city == departure && s.departure.city == arrival));
+        return Algorithm.paginate(newBuses.iterator(), page, pageSize, t -> true);
+    }
+//    pasrah dulu gasih
 }
