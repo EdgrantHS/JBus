@@ -1,34 +1,35 @@
 package edgrantJBusRD;
+
 import java.util.HashMap;
-import java.util.Objects;
 
-public class Serializable
-{
+public class Serializable {
     public final int id;
-    private static HashMap<Class<?>, Integer> mapCounter = new HashMap<>();
-
-    public int compareTo(Serializable obj){
-        return Integer.compare(obj.id, this.id);
-    }
-    public boolean equals(Object obj){
-//        Serializable temp = ((Serializable) obj);
-        return obj instanceof Serializable && (((Serializable) obj).id == this.id);
-    }
-    public boolean equals(Serializable obj){
-        return (obj != null) && (obj.id == this.id);
-    }
-    public static<T> Integer getLastAssignedId(Class<T> obj){
-        return mapCounter.getOrDefault(obj, 0);
-    }
-    public static<T> Integer setLastAssignedId(Class<T> obj, int id){
-        return mapCounter.replace(obj, id);
+    private static HashMap<Class<?>, Integer> mapCounter = new HashMap<Class <?>, Integer>();
+    protected Serializable(){
+        Integer counter = mapCounter.get(getClass());
+        counter = counter == null ? 0 : counter + 1;
+        mapCounter.put(getClass(), counter);
+        this.id = counter;
     }
 
-    protected Serializable()
-    {
-        Class<?> obj = this.getClass();
-        int lastId = getLastAssignedId(obj);
-        this.id = lastId + 1;
-        mapCounter.put(obj, this.id);
+    public static <T> Integer getLastAssignedId(Class<T> getter ){
+        return mapCounter.get(getter);
     }
+
+    public static <T> Integer setLastAssignedId(Class<T> setter, int number){
+        return mapCounter.put(setter, number);
+    }
+
+    public int compareTo(Serializable temp){
+        return ((Integer)this.id).compareTo(temp.id);
+    }
+
+    public boolean equals(Serializable temp){
+        return temp.id == this.id;
+    }
+
+    public boolean equals(Object object){
+        return object instanceof Serializable && ((Serializable) object).id == this.id;
+    }
+
 }
