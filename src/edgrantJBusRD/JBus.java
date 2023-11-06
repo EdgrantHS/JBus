@@ -31,7 +31,9 @@ public class JBus {
                     "C:\\Users\\Edgrant\\OneDrive - UNIVERSITAS INDONESIA\\Desktop\\UI\\Others\\JBus\\data\\accountDatabase.json";
             JsonTable<Account> tableAccount = new JsonTable<>(Account.class, filepath);
             Account newAccount = new Account("Edgrant", "edgrant@gmail.com", "Nginx123");
-            System.out.println(tableAccount);
+            tableAccount.add(newAccount);
+            JsonTable.writeJson(tableAccount, filepath);
+            System.out.println(JsonTable.readJson(tableAccount.getClass(),filepath));
 //            JsonTable<Bus> busList = new JsonTable<>(Bus.class, filepath);
 //            List<Bus> filteredBus =
 //                    filterByDeparture(busList, City.JAKARTA, 0, 3);
