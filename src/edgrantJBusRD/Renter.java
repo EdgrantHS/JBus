@@ -40,7 +40,6 @@ public class Renter extends Serializable
         this.companyName = companyName;
         this.phoneNumber = phoneNumber;
     }
-
     public boolean validate(){
         Pattern pattern = Pattern.compile(this.REGEX_NAME);
         Matcher matcher = pattern.matcher(this.companyName);
