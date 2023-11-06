@@ -1,19 +1,12 @@
 package edgrantJBusRD;
 
-
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-/**
- * Write a description of class Renter here.
- *
- * @author (your name)
- * @version (a version number or a date)
- */
 public class Renter extends Serializable
 {
-    private final String REGEX_NAME = "/[a-zA-Z0-9_]{4,20}";
-    private final String REGEX_PHONE = "/[0-9]{9,12}";
+    private final static String REGEX_NAME = "^[a-zA-Z0-9_]{4,20}$";
+    private final static String REGEX_PHONE = "^[0-9]{9,12}$";
     public String address, companyName;
     public String phoneNumber;
 

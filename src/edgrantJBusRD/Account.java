@@ -1,8 +1,12 @@
 package edgrantJBusRD;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 public class Account extends Serializable
 {
-    // instance variables - replace the example below with your own
+    private final static String REGEX_EMAIL = "^[a-zA-Z0-9]+@[a-zA-Z]+\\.[a-zA-Z]+$";
+    private final static String REGEX_PASSWORD = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=\\S+$).{8,}$";
     public String email, name, password;
 
     public Account(String name, String email, String password)
@@ -28,5 +32,15 @@ public class Account extends Serializable
     
     public boolean read(String content){
         return false;
+    }
+
+    public boolean validate(){
+        Pattern pattern = Pattern.compile(this.REGEX_EMAIL);
+        Matcher matcher = pattern.matcher(this.email);
+        boolean name = matcher.find();
+        pattern = Pattern.compile(this.REGEX_PASSWORD);
+        matcher = pattern.matcher(this.password);
+        boolean phone = matcher.find();
+        return name && phone;
     }
 }
