@@ -1,4 +1,4 @@
-package controller;
+package com.edgrantJBusRD.controller;
 
 import com.edgrantJBusRD.Account;
 import org.springframework.web.bind.annotation.*;
