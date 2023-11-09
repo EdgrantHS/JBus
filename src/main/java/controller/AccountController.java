@@ -1,6 +1,6 @@
-package com.netlabJBus.controller;
+package controller;
 
-import com.netlabJBus.Account;
+import com.edgrantJBusRD.Account;
 import org.springframework.web.bind.annotation.*;
 
 
