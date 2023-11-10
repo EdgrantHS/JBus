@@ -56,6 +56,7 @@ public class AccountController implements BasicGetController
         }
 
  //        Mengembalikan account
+        accountTable.add(newAccount);
         return new BaseResponse<>(true, "Berhasil register", newAccount);
     }
     @RequestMapping(value = "/{id}/registerRenter", method = RequestMethod.POST)
@@ -69,15 +70,16 @@ public class AccountController implements BasicGetController
     {
         // jika ada account
         if (Algorithm.<Account>exists(getJsonTable(), e -> e.id == id)){
-            Account checkAccount = Algorithm.<Account>find(getJsonTable(), e -> e.id == id);
+            Account tempAccount = Algorithm.<Account>find(getJsonTable(), e -> e.id == id);
 //            jika sudah renter
-            if (checkAccount.company != null){
+            if (tempAccount.company != null){
                 return new BaseResponse<>(false, "sudah renter", null);
             }
 //            bukan renter
             else {
                 Renter newRenter = new Renter(companyName, phoneNumber, address);
-                checkAccount.company = newRenter;
+                tempAccount.company = newRenter;
+//                accountTable.add(checkAccount);
                 return new BaseResponse<>(true, "berhasil buat renter", newRenter);
             }
         }
@@ -131,18 +133,20 @@ public class AccountController implements BasicGetController
     @RequestMapping(value = "/{id}/topUp", method = RequestMethod.POST)
     BaseResponse<Double> topUp(
             @PathVariable int id,
-            @PathVariable double amount
+            @RequestParam double amount
     ){
         if (amount <= 0){
             return new BaseResponse<>(false, "amount tidak valid", null);
         }
         //kalau ada
         if(Algorithm.<Account>exists(getJsonTable(), e -> e.id == id)){
-            return new BaseResponse<>(true, "berhasil buat akun", amount);
+            Account newAccount = Algorithm.<Account>find(getJsonTable(), e -> e.id == id);
+            newAccount.balance += amount;
+            return new BaseResponse<>(true, "berhasil top up", amount);
         }
         //kalau gak ada
         else{
-            return new BaseResponse<>(false, "tidak ada akun", null);
+            return new BaseResponse<>(false, "tidak top up", null);
         }
     }
 //    @GetMapping("/{id}")
