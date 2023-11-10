@@ -9,16 +9,19 @@ import org.springframework.web.bind.annotation.*;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.List;
 
 
 @RestController
 @RequestMapping("/account")
-public class AccountController implements BasicGetController
+public class AccountController implements BasicGetController<Account>
 {
     public static @JsonAutowired(
             value = Account.class,
             filepath = "src//main//java//com//edgrantJBusRD//json//account.json"
     ) JsonTable<Account> accountTable;
+    private int id;
+
     @GetMapping
     String index() { return "account page"; }
 
@@ -149,6 +152,16 @@ public class AccountController implements BasicGetController
             return new BaseResponse<>(false, "tidak top up", null);
         }
     }
+
+//    @RequestMapping(value = "/page", method = RequestMethod.GET)
+//    public List<Account> getPage(
+//            @RequestParam(value = "page", defaultValue = "0") int page,
+//            @RequestParam(value = "size", defaultValue = "5") int pageSize
+//    ){
+//        return Algorithm.paginate(getJsonTable(), page, pageSize, e -> true);
+//    }
 //    @GetMapping("/{id}")
-//    String getById(@PathVariable int id) { return "account id " + id + " not found!"; }
+//    public Account getById(@PathVariable int id){
+//        return Algorithm.<Account>find(getJsonTable(), e -> e.id == id);
+//    }
 }
