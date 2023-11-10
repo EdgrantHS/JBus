@@ -11,5 +11,6 @@ public class JBus {
         SpringApplication.run(JBus.class, args);
         Runtime.getRuntime().addShutdownHook(new Thread(() -> JsonDBEngine.join()));
 //        System.out.println(MD5.encrypt("Hello"));
+        
     }
 }

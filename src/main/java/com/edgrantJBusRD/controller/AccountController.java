@@ -32,7 +32,7 @@ public class AccountController implements BasicGetController
     {
         BaseResponse<Account> output = new BaseResponse<>(false, "gagal register", null);
         Account newAccount = new Account(name, email, password);
-        if (name.isBlank() || !newAccount.validate() || Algorithm.<Account>exists(getJsonTable(), e -> e.email.equals(email))){
+        if (name.isBlank() || newAccount.validate() || Algorithm.<Account>exists(getJsonTable(), e -> e.email.equals(email))){
             return new BaseResponse<>(false, "gagal register", null);
         }
 
