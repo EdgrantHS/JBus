@@ -17,7 +17,7 @@ public class AccountController implements BasicGetController
 {
     public static @JsonAutowired(
             value = Account.class,
-            filepath = "C:\\Users\\Edgrant\\OneDrive - UNIVERSITAS INDONESIA\\Desktop\\UI\\Others\\JBus\\src\\main\\java\\com\\edgrantJBusRD\\json\\account.json"
+            filepath = "src//main//java//com//edgrantJBusRD//json//account.json"
     ) JsonTable<Account> accountTable;
     @GetMapping
     String index() { return "account page"; }
