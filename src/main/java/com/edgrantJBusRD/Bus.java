@@ -1,4 +1,6 @@
 package com.edgrantJBusRD;
+import com.edgrantJBusRD.dbjson.Serializable;
+
 import java.util.*;
 import java.sql.Timestamp;
 
@@ -60,5 +62,4 @@ public class Bus extends Serializable {
         schedules.add(new Schedule(schedule, this.capacity));
     }
 
-//    pasrah dulu gasih
 }

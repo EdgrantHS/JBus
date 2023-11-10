@@ -1,4 +1,6 @@
 package com.edgrantJBusRD;
+import com.edgrantJBusRD.dbjson.Serializable;
+
 import java.sql.Timestamp;
 
 public class Invoice extends Serializable

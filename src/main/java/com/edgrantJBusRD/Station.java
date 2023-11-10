@@ -1,5 +1,7 @@
 package com.edgrantJBusRD;
 
+import com.edgrantJBusRD.dbjson.Serializable;
+
 public class Station extends Serializable
 {
     // instance variables - replace the example below with your own

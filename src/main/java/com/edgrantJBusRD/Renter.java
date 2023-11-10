@@ -1,5 +1,7 @@
 package com.edgrantJBusRD;
 
+import com.edgrantJBusRD.dbjson.Serializable;
+
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 

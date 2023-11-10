@@ -1,6 +1,8 @@
 package com.edgrantJBusRD;
 
 
+import com.edgrantJBusRD.dbjson.Serializable;
+
 /**
  * Write a description of class Review here.
  *

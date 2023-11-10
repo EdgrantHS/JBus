@@ -1,8 +1,8 @@
-package com.edgrantJBusRD;
+package com.edgrantJBusRD.dbjson;
 
 import java.util.HashMap;
 
-public class Serializable {
+public class Serializable implements Comparable<Serializable>{
     public final int id;
     private static HashMap<Class<?>, Integer> mapCounter = new HashMap<Class <?>, Integer>();
     protected Serializable(){
