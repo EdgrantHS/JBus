@@ -34,13 +34,13 @@ public class PaymentController implements BasicGetController<Payment>{
             return new BaseResponse<>(false, "buyer tidak ada", null);
         }
         // check apakah bus null
-        if (!(Algorithm.<Bus>exists(BusController.busTable, e -> e.accountId == busId))) {
+        if (!(Algorithm.<Bus>exists(BusController.busTable, e -> e.id == busId))) {
             return new BaseResponse<>(false, "bus tidak ada", null);
         }
 
         // cek apakah saldo melebihi harga tiket
         Account buyer = Algorithm.<Account>find(AccountController.accountTable, e -> e.id == buyerId);
-        Bus bus = Algorithm.<Bus>find(BusController.busTable, e -> e.accountId == busId);
+        Bus bus = Algorithm.<Bus>find(BusController.busTable, e -> e.id == busId);
         if (buyer.balance < bus.price.price){
             return new BaseResponse<>(false, "saldo tidak cukup", null);
         }
@@ -51,7 +51,7 @@ public class PaymentController implements BasicGetController<Payment>{
         }
 
         // cek apakah booking sukses
-        if (Payment.makeBooking(Timestamp.valueOf(departureDate), busSeats, Algorithm.<Bus>find(BusController.busTable, e -> e.accountId == busId))){
+        if (Payment.makeBooking(Timestamp.valueOf(departureDate), busSeats, Algorithm.<Bus>find(BusController.busTable, e -> e.id == busId))){
             Payment newPayment = new Payment(buyerId, renterId, busId, busSeats, Timestamp.valueOf(departureDate));
             newPayment.status = Invoice.PaymentStatus.WAITING;
             paymentTable.add(newPayment);

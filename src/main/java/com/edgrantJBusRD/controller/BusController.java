@@ -40,18 +40,19 @@ public class BusController implements BasicGetController<Bus>{
 //        }
 //        Check jika account ada
         if (!(Algorithm.<Account>exists(AccountController.accountTable, e -> e.id == accountId))) {
+//            System.out.println(AccountController.accountTable + "tes");
             return new BaseResponse<>(false, "account tidak ditemukan", null);
         }
 //        Check jika account renter
         else {
             Account tempAccount = Algorithm.<Account>find(AccountController.accountTable, e -> e.id == accountId);
-            if (tempAccount.company != null) {
-                return new BaseResponse<>(false, "account merupakan renter", null);
+            if (tempAccount.company == null) {
+                return new BaseResponse<>(false, "account bukan renter", null);
             }
         }
-        if (Algorithm.<Account>exists(AccountController.accountTable, e -> e.id == accountId)) {
-            return new BaseResponse<>(false, "account tidak ditemukan", null);
-        }
+//        if (Algorithm.<Account>exists(AccountController.accountTable, e -> e.id == accountId)) {
+//            return new BaseResponse<>(false, "account tidak ditemukan", null);
+//        }
 //        Mencari station id departure
         Station departStation;
         if (Algorithm.<Station>exists(StationController.stationTable, e -> e.id == stationDepartureId)) {
@@ -81,7 +82,7 @@ public class BusController implements BasicGetController<Bus>{
             )
     {
         try{
-            Bus tempBus = Algorithm.<Bus>find(getJsonTable(), e -> e.id == busId);
+            Bus tempBus = Algorithm.<Bus>find(busTable, e -> e.id == busId);
             tempBus.schedules.add(new Schedule(Timestamp.valueOf(time), tempBus.capacity));
             return new BaseResponse<>(true, "berhasil ditambah schedule", tempBus);
         }
