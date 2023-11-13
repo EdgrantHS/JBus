@@ -1,12 +1,15 @@
 package com.edgrantJBusRD;
 
-public enum City
-{
+public enum City {
     JAKARTA,
-    BANDUNG,
     DEPOK,
+    BANDUNG,
+    YOGYAKARTA,
     SEMARANG,
     SURABAYA,
     BALI,
-    YOGYAKARTA;
+    TANGERANG,
+    BOGOR,
+    BEKASI,
+    SUKABUMI,
 }

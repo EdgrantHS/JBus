@@ -6,24 +6,24 @@ import java.util.List;
 public class Payment extends Invoice
 {
     private int busId;
-    public String busSeat;
+    public List<String> busSeats;
     public Timestamp departureDate;
 
-    public Payment(int buyerId, int renterId, int busId, String busSeat, Timestamp departureDate)
+    public Payment(int buyerId, int renterId, int busId, List<String> busSeats, Timestamp departureDate)
     {
         super(buyerId, renterId);
         this.busId = busId;
         this.departureDate = departureDate;
-        this.busSeat = busSeat;
+        this.busSeats = busSeats;
     }
     
     
-    public Payment(Account account, Renter renter, int busId, String busSeat, Timestamp departureDate)
+    public Payment(Account account, Renter renter, int busId, List<String> busSeats, Timestamp departureDate)
     {
         super(account, renter);
         this.busId = busId;
         this.departureDate = departureDate;
-        this.busSeat = busSeat;
+        this.busSeats = busSeats;
     }
 
     public String getDepartureInfo(){
@@ -33,7 +33,7 @@ public class Payment extends Invoice
             "Payment Id: " + super.id + " Buyer Id: " + super.buyerId
             + " Renter Id: " + super.renterId
             + " Departure Date: " + SDFormat.format(this.departureDate.getTime()) 
-            + " Bus Seat: " + this.busSeat  
+            + " Bus Seat: " + this.busSeats
         );
     }
 
