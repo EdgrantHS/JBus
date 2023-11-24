@@ -140,7 +140,7 @@ public class AccountController implements BasicGetController<Account>
 //            return new BaseResponse<>(true, "Login berhasil", newAccount);
 //        }
         if(Algorithm.<Account>exists(getJsonTable(), e -> e.email.equals(email))){
-            if (Algorithm.<Account>exists(getJsonTable(), e -> e.email.equals(finalHashPassword))){
+            if (Algorithm.<Account>exists(getJsonTable(), e -> e.password.equals(finalHashPassword))){
                 Account newAccount = Algorithm.<Account>find(getJsonTable(), e -> e.email.equals(email) && e.password.equals(finalHashPassword));
                 return new BaseResponse<>(true, "Login berhasil", newAccount);
             }
