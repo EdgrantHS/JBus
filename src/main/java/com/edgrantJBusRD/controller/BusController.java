@@ -83,7 +83,7 @@ public class BusController implements BasicGetController<Bus>{
     {
         try{
             Bus tempBus = Algorithm.<Bus>find(busTable, e -> e.id == busId);
-            tempBus.schedules.add(new Schedule(Timestamp.valueOf(time), tempBus.capacity));
+                tempBus.schedules.add(new Schedule(Timestamp.valueOf(time), tempBus.capacity));
             return new BaseResponse<>(true, "berhasil ditambah schedule", tempBus);
         }
         catch (Exception exception){

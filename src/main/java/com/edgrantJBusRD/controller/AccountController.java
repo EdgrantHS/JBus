@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.*;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
-import java.util.List;
 
 
 @RestController
@@ -24,6 +23,18 @@ public class AccountController implements BasicGetController<Account>
 
     @GetMapping
     String index() { return "account page"; }
+
+//    @GetMapping("/{id}")
+//    BaseResponse<Account> getAccountbyId(@PathVariable int id){
+//        if (Algorithm.<Account>exists(getJsonTable(), e -> e.id == id)) {
+//            Account newAccount = Algorithm.<Account>find(getJsonTable(), e -> e.id == id);
+//            return new BaseResponse<>(true, "account ditemukan", newAccount);
+//        }
+//        else {
+//            return new BaseResponse<>(false, "tidak ada account", null);
+//        }
+//    }
+
 
     @PostMapping("/register")
     BaseResponse<Account> register
@@ -124,12 +135,21 @@ public class AccountController implements BasicGetController<Account>
         }
 
         String finalHashPassword = hashPassword;
-        if(Algorithm.<Account>exists(getJsonTable(), e -> e.email.equals(email) && e.password.equals(finalHashPassword))){
-            Account newAccount = Algorithm.<Account>find(getJsonTable(), e -> e.email.equals(email) && e.password.equals(finalHashPassword));
-            return new BaseResponse<>(true, "Login berhasil", newAccount);
+//        if(Algorithm.<Account>exists(getJsonTable(), e -> e.password.equals(finalHashPassword))){
+//            Account newAccount = Algorithm.<Account>find(getJsonTable(), e -> e.email.equals(email) && e.password.equals(finalHashPassword));
+//            return new BaseResponse<>(true, "Login berhasil", newAccount);
+//        }
+        if(Algorithm.<Account>exists(getJsonTable(), e -> e.email.equals(email))){
+            if (Algorithm.<Account>exists(getJsonTable(), e -> e.email.equals(finalHashPassword))){
+                Account newAccount = Algorithm.<Account>find(getJsonTable(), e -> e.email.equals(email) && e.password.equals(finalHashPassword));
+                return new BaseResponse<>(true, "Login berhasil", newAccount);
+            }
+            else{
+                return new BaseResponse<>(false, "password salah", null);
+            }
         }
         else {
-            return new BaseResponse<>(false, "Login gagal", null);
+            return new BaseResponse<>(false, "tidak ada email", null);
         }
     }
 
@@ -152,16 +172,4 @@ public class AccountController implements BasicGetController<Account>
             return new BaseResponse<>(false, "tidak top up", null);
         }
     }
-
-//    @RequestMapping(value = "/page", method = RequestMethod.GET)
-//    public List<Account> getPage(
-//            @RequestParam(value = "page", defaultValue = "0") int page,
-//            @RequestParam(value = "size", defaultValue = "5") int pageSize
-//    ){
-//        return Algorithm.paginate(getJsonTable(), page, pageSize, e -> true);
-//    }
-//    @GetMapping("/{id}")
-//    public Account getById(@PathVariable int id){
-//        return Algorithm.<Account>find(getJsonTable(), e -> e.id == id);
-//    }
 }
