@@ -87,11 +87,9 @@ public class BusController implements BasicGetController<Bus>{
             return new BaseResponse<>(false, "tidak berhasil ditambah schedule", null);
         }
     }
-
     @GetMapping("/getMyBus")
     public List<Bus> getMyBus(@RequestParam int accountId) {
-        return Algorithm.<Bus>collect(getJsonTable(),
-                b->b.accountId==accountId);}
+        return Algorithm.<Bus>collect(getJsonTable(), b->b.accountId == accountId);}
 
     @Override
     public JsonTable<Bus> getJsonTable() {
