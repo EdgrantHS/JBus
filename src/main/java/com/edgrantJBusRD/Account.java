@@ -1,6 +1,5 @@
-package com.edgrantJBusRD.Objects;
+package com.edgrantJBusRD;
 
-import com.edgrantJBusRD.Renter;
 import com.edgrantJBusRD.dbjson.Serializable;
 
 import java.util.regex.Matcher;
@@ -25,18 +24,18 @@ public class Account extends Serializable
 
     public String toString(){
         return (
-                "" +
-                        super.id + " " +
-                        this.name + " " +
-                        this.email + " " +
-                        this.password
+            "" + 
+            super.id + " " +
+            this.name + " " +
+            this.email + " " +
+            this.password
         );
     }
-
+    
     public Object write(){
         return this;
     }
-
+    
     public boolean read(String content){
         return false;
     }
