@@ -24,7 +24,6 @@ public class Account extends Serializable
 
     public String toString(){
         return (
-            "" + 
             super.id + " " +
             this.name + " " +
             this.email + " " +

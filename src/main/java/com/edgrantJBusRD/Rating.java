@@ -33,7 +33,6 @@ public class Rating
     
     public String toString(){
         return (
-            "" + 
             this.count + " " +
             this.total
         );

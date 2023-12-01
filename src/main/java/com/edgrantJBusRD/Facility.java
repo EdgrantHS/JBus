@@ -10,5 +10,5 @@ public enum Facility
     WIFI,
     LCD_TV,
     ELECTRIC_SOCKET,
-    LARGE_BAGGAGE;
+    LARGE_BAGGAGE
 }

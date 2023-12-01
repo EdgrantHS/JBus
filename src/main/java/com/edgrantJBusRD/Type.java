@@ -9,5 +9,5 @@ package com.edgrantJBusRD;
  */
 public enum Type
 {
-    REBATE, DISCOUNT;
+    REBATE, DISCOUNT
 }

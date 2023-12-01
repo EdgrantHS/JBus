@@ -21,7 +21,6 @@ public class Price
     
     public String toString(){
         return (
-            "" + 
             this.price + " " +
             this.rebate
         );

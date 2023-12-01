@@ -5,7 +5,7 @@ import java.util.List;
 
 public class Payment extends Invoice
 {
-    private int busId;
+    private final int busId;
     public List<String> busSeats;
     public Timestamp departureDate;
 

@@ -1,10 +1,9 @@
 package com.edgrantJBusRD;
 
-import java.sql.SQLOutput;
 import java.sql.Timestamp;
 public class BookingThread extends Thread{
-    private Bus bus;
-    private Timestamp timestamp ;
+    private final Bus bus;
+    private final Timestamp timestamp ;
     public BookingThread(String name, Bus bus, Timestamp timestamp){
         super(name);
         this.bus = bus;

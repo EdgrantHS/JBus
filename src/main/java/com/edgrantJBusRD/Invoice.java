@@ -10,13 +10,13 @@ public class Invoice extends Serializable
         NONE,
         NEUTRAL,
         GOOD,
-        BAD;
+        BAD
     }
     
     public enum PaymentStatus {
         FAILED,
         WAITING,
-        SUCCESS;
+        SUCCESS
     }
     
     public Timestamp time;
@@ -29,7 +29,7 @@ public class Invoice extends Serializable
         this.buyerId = buyerId;
         this.renterId = renterId;
         this.rating = BusRating.NONE; 
-        this.status = status.WAITING;
+        this.status = PaymentStatus.WAITING;
         this.time = new Timestamp(System.currentTimeMillis());
     }
     
@@ -39,11 +39,11 @@ public class Invoice extends Serializable
         this.renterId = renter.id;
         this.time = new Timestamp(System.currentTimeMillis());
         this.rating = BusRating.NONE;
-        this.status = status.WAITING;
+        this.status = PaymentStatus.WAITING;
     }
 
     public String toString()
     {
-        return ("" + super.id + " "  + this.buyerId + " " + this.renterId + " " + this.time.getTime());
+        return (super.id + " "  + this.buyerId + " " + this.renterId + " " + this.time.getTime());
     }
 }

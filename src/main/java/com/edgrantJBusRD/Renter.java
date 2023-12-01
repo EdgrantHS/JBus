@@ -36,10 +36,10 @@ public class Renter extends Serializable
         this.phoneNumber = phoneNumber;
     }
     public boolean validate(){
-        Pattern pattern = Pattern.compile(this.REGEX_NAME);
+        Pattern pattern = Pattern.compile(REGEX_NAME);
         Matcher matcher = pattern.matcher(this.companyName);
         boolean name = matcher.find();
-        pattern = Pattern.compile(this.REGEX_PHONE);
+        pattern = Pattern.compile(REGEX_PHONE);
         matcher = pattern.matcher(this.phoneNumber);
         boolean phone = matcher.find();
         return name && phone;

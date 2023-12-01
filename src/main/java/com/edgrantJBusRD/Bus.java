@@ -32,8 +32,7 @@ public class Bus extends Serializable {
 
     public String toString() {
         return (
-                "" +
-                        super.id + " " +
+                super.id + " " +
                         this.name + " " +
                         this.departure.stationName + " " +
                         this.arrival.stationName + " " +

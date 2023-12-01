@@ -20,6 +20,6 @@ public class Review extends Serializable
     }
 
     public String toString(){
-        return ("" + super.id + " " + this.date + " " + this.desc);
+        return (super.id + " " + this.date + " " + this.desc);
     }
 }
