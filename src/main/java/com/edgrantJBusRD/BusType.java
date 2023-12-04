@@ -1,3 +1,5 @@
+package com.edgrantJBusRD;
+
 /**
  * The BusType enum represents different types of buses in the transportation system.
  * Each enum value corresponds to a specific type of bus.
