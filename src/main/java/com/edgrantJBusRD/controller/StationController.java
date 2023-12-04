@@ -7,17 +7,36 @@ import com.edgrantJBusRD.dbjson.JsonTable;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
-
+/**
+ * The StationController class handles HTTP requests related to stations in a transportation system.
+ * It provides endpoints for creating stations and retrieving a list of all stations.
+ */
 @RestController
 @RequestMapping("/station")
 public class StationController implements BasicGetController<Station> {
-    public static @JsonAutowired(value = Station.class, filepath = "src\\main\\java\\com\\edgrantJBusRD\\json\\station.json") JsonTable<Station> stationTable;
+
+    /**
+     * The JSON table representing the collection of stations.
+     */
+    public static @JsonAutowired(
+            value = Station.class,
+            filepath = "src\\main\\java\\com\\edgrantJBusRD\\json\\station.json"
+    ) JsonTable<Station> stationTable;
+
     @Override
     public JsonTable<Station> getJsonTable() {
         return stationTable;
     }
 
-    //Add new Station
+
+    /**
+     * Creates a new station and adds it to the system.
+     *
+     * @param stationName The name of the new station.
+     * @param city        The city where the station is located.
+     * @param address     The address of the station.
+     * @return A BaseResponse indicating the success or failure of station creation.
+     */
     @PostMapping("/create")
     public BaseResponse<Station> createStation(
             @RequestParam String stationName,
@@ -50,6 +69,11 @@ public class StationController implements BasicGetController<Station> {
         }
     }
 
+    /**
+     * Retrieves a list of all stations.
+     *
+     * @return A List of Station objects representing all stations in the system.
+     */
     @GetMapping("/getAll")
     public List<Station> getAllStation() { return getJsonTable();}
 

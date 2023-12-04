@@ -8,16 +8,33 @@ import org.springframework.web.bind.annotation.*;
 import java.sql.Timestamp;
 import java.util.List;
 import java.util.Objects;
+/**
+ * The PaymentController class handles HTTP requests related to payments and booking in a transportation system.
+ * It provides endpoints for making bookings, accepting payments, and canceling payments.
+ */
 
 @RestController
 @RequestMapping( "/payment")
 public class PaymentController implements BasicGetController<Payment>{
-
+    /**
+     * The JSON table representing the collection of payments.
+     */
     public static @JsonAutowired(
             value = Bus.class,
             filepath = "src//main//java//com//edgrantJBusRD//json//payment.json"
     ) JsonTable<Payment> paymentTable;
 
+    /**
+     * Makes a booking and initiates the payment process.
+     *
+     * @param buyerId        The ID of the buyer account.
+     * @param renterId       The ID of the renter account.
+     * @param busId          The ID of the bus for the booking.
+     * @param busSeats       The list of selected bus seats.
+     * @param busType        The type of the bus (e.g., luxury, standard).
+     * @param departureDate  The departure date and time.
+     * @return A BaseResponse indicating the success or failure of the booking and payment.
+     */
     @RequestMapping(value = "/makeBooking", method = RequestMethod.POST)
     BaseResponse<Payment> makeBooking
             (
@@ -62,6 +79,12 @@ public class PaymentController implements BasicGetController<Payment>{
         }
     }
 
+    /**
+     * Accepts a payment associated with a booking.
+     *
+     * @param id The ID of the payment to accept.
+     * @return A BaseResponse indicating the success or failure of the payment acceptance.
+     */
     @RequestMapping(value = "/{id}/accept", method = RequestMethod.POST)
     BaseResponse<Payment> accept
             (
@@ -79,6 +102,12 @@ public class PaymentController implements BasicGetController<Payment>{
         return new BaseResponse<>(true, "payment sukses", newPayment);
     }
 
+    /**
+     * Cancels a payment associated with a booking.
+     *
+     * @param id The ID of the payment to cancel.
+     * @return A BaseResponse indicating the success or failure of the payment cancellation.
+     */
     @RequestMapping(value = "/{id}/cancel", method = RequestMethod.POST)
     BaseResponse<Payment> cancel
             (

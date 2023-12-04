@@ -13,8 +13,18 @@ import java.lang.annotation.Target;
  */
 @Retention(value=RetentionPolicy.RUNTIME)
 @Target(value={ElementType.FIELD})
-public @interface JsonAutowired
-{
+public @interface JsonAutowired {
+	/**
+	 * Specifies the class type of the JSON table.
+	 *
+	 * @return the class type of the JSON data to be loaded
+	 */
 	Class<?> value();
+
+	/**
+	 * Specifies the file path of the JSON file.
+	 *
+	 * @return the file path of the JSON file containing the data
+	 */
 	String filepath();
 }

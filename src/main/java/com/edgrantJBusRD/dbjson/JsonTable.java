@@ -9,14 +9,26 @@ import java.util.Collections;
 import java.util.Vector;
 
 /**
- * Json Table is used to write and read JSON in every class or method that call json table
- * @param <T> generic as a universal type of data.
+ * JsonTable is a class that facilitates reading and writing JSON data in various classes and methods.
+ * It extends the Vector class and can hold objects of a generic type.
+ *
+ * @param <T> The generic type of objects that this JsonTable can hold.
  * @author Rafie Amandio
  */
 public class JsonTable<T> extends Vector<T> {
     private static final Gson gson = new Gson();
+    /**
+     * file path untuk file
+     */
     public final String filepath;
 
+    /**
+     * Constructs a JsonTable with the specified class type and file path.
+     *
+     * @param clazz    The class type of objects to be stored in the JsonTable.
+     * @param filepath The file path where the JSON data will be read from or written to.
+     * @throws IOException If an I/O error occurs during file creation or reading.
+     */
     @SuppressWarnings("unchecked")
     public JsonTable(Class<T> clazz, String filepath) throws IOException {
         this.filepath = filepath;
@@ -46,21 +58,38 @@ public class JsonTable<T> extends Vector<T> {
         }
     }
 
-
-    public void writeJson() throws IOException
-    {
+    /**
+     * Writes the content of this JsonTable to the specified file in JSON format.
+     *
+     * @throws IOException If an I/O error occurs during the write operation.
+     */
+    public void writeJson() throws IOException {
         writeJson(this, this.filepath);
     }
 
-    public static void writeJson(Object object, String filepath) throws IOException
-    {
+    /**
+     * Writes the given object to the specified file in JSON format.
+     *
+     * @param object   The object to be written to the file.
+     * @param filepath The file path where the JSON data will be written to.
+     * @throws IOException If an I/O error occurs during the write operation.
+     */
+    public static void writeJson(Object object, String filepath) throws IOException {
         final FileWriter writer = new FileWriter(filepath);
         writer.write(gson.toJson(object));
         writer.close();
     }
 
-    public static <T> T readJson(Class<T> clazz, String filepath) throws FileNotFoundException
-    {
+    /**
+     * Reads and deserializes JSON data from the specified file and returns an object of the specified class type.
+     *
+     * @param <T>      The generic type of the object to be returned.
+     * @param clazz    The class type of the object to be created from the JSON data.
+     * @param filepath The file path from which JSON data will be read.
+     * @return An object of the specified class type created from the JSON data.
+     * @throws FileNotFoundException If the specified file is not found.
+     */
+    public static <T> T readJson(Class<T> clazz, String filepath) throws FileNotFoundException {
         final JsonReader reader = new JsonReader(new FileReader(filepath));
         return gson.fromJson(reader, clazz);
     }

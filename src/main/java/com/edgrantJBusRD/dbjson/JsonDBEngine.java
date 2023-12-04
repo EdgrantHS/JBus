@@ -21,6 +21,7 @@ public class JsonDBEngine
 {
 	/** Interval in milliseconds for {@link #autosaver()} */
 	public static long autosaveIntervalMS = 10000;
+	/** Interval in milliseconds for {@link #autosaver()} */
 	public static long sleepIntervalMS = 100;
 
 	private static boolean exitSignal = false;
