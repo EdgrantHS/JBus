@@ -1,28 +1,46 @@
 package com.edgrantJBusRD;
 
-public class Price
-{
-    // instance variables - replace the example below with your own
-    public double price, rebate;
+/**
+ * Represents the price of a product or service, including an optional rebate.
+ */
+public class Price {
+    /**
+     * The base price of the product or service.
+     */
+    public double price;
 
-    public Price(double price)
-    {
-        // initialise instance variables
+    /**
+     * The rebate amount applied to the price (optional).
+     */
+    public double rebate;
+
+    /**
+     * Constructs a Price object with a specified base price and no rebate.
+     *
+     * @param price The base price of the product or service.
+     */
+    public Price(double price) {
         this.price = price;
         this.rebate = 0;
     }
-    
-    public Price(double price, double rebate)
-    {
-        // initialise instance variables
+
+    /**
+     * Constructs a Price object with a specified base price and rebate amount.
+     *
+     * @param price  The base price of the product or service.
+     * @param rebate The rebate amount applied to the price.
+     */
+    public Price(double price, double rebate) {
         this.price = price;
         this.rebate = rebate;
     }
-    
-    public String toString(){
-        return (
-            this.price + " " +
-            this.rebate
-        );
+
+    /**
+     * Returns a string representation of the Price object.
+     *
+     * @return A string containing the base price and rebate (if present).
+     */
+    public String toString() {
+        return this.price + " " + this.rebate;
     }
 }

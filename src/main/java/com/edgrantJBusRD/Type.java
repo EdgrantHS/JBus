@@ -1,13 +1,17 @@
 package com.edgrantJBusRD;
 
-
 /**
- * Enumeration class Type - write a description of the enum class here
- *
- * @author (your name here)
- * @version (version number or date here)
+ * Enumeration representing types of financial adjustments, such as rebates and discounts.
+ * This enum defines two constants: REBATE and DISCOUNT.
  */
-public enum Type
-{
-    REBATE, DISCOUNT
+public enum Type {
+    /**
+     * Represents a rebate, which is a partial refund or return of funds.
+     */
+    REBATE,
+
+    /**
+     * Represents a discount, which is a reduction in the original price or cost.
+     */
+    DISCOUNT
 }

@@ -1,7 +1,10 @@
 package com.edgrantJBusRD;
 
 import java.util.*;
-
+/**
+ * The Algorithm class provides utility methods for working with collections and iterators.
+ * It includes methods for filtering, counting, finding elements, checking existence, and pagination in collections.
+ */
 public class Algorithm {
     private Algorithm() {
     }
@@ -32,6 +35,16 @@ public class Algorithm {
         return collect(i, predicate);
     }
 
+    // Methods for counting elements.
+
+    /**
+     * Collects elements from an iterable based on a predicate condition.
+     *
+     * @param iterator  The iterator to collect elements from.
+     * @param pred The predicate condition to filter elements.
+     * @param <T>       The type of elements in the iterable.
+     * @return A list containing elements that satisfy the predicate condition.
+     */
     public static <T> List<T> collect(Iterator<T> iterator, Predicate<T> pred) {
         List<T> list = new ArrayList();
 
@@ -74,6 +87,14 @@ public class Algorithm {
         return count(it, pred);
     }
 
+    /**
+     * Counts the occurrences of a value in an iterable.
+     *
+     * @param iterator The iterator to count elements in.
+     * @param pred    The function to count.
+     * @param <T>      The type of elements in the iterable.
+     * @return The number of occurrences of the value.
+     */
     public static <T> int count(Iterator<T> iterator, Predicate<T> pred) {
         int count = 0;
 
@@ -107,6 +128,14 @@ public class Algorithm {
         return find(it, pred);
     }
 
+    /**
+     * Finds the first element in the given iterator that satisfies the provided predicate condition.
+     *
+     * @param iterator  The iterator to search for the element.
+     * @param pred The predicate condition to filter elements.
+     * @param <T>       The type of elements in the iterator.
+     * @return The first element that satisfies the predicate, or null if no such element is found.
+     */
     public static <T> T find(Iterator<T> iterator, Predicate<T> pred) {
         while(true) {
             if (iterator.hasNext()) {
@@ -153,6 +182,16 @@ public class Algorithm {
         return exists(it, pred);
     }
 
+    // Methods for checking existence.
+
+    /**
+     * Checks if a value exists in an iterator.
+     *
+     * @param iterator The iterator to check.
+     * @param pred    The function to check for existence.
+     * @param <T>      The type of elements in the iterator.
+     * @return True if the value exists in the iterator; otherwise, false.
+     */
     public static <T> boolean exists(Iterator<T> iterator, Predicate<T> pred) {
         while(true) {
             if (iterator.hasNext()) {
@@ -168,6 +207,8 @@ public class Algorithm {
         }
     }
 
+    // Methods for pagination.
+
     public static <T> List<T> paginate(T[] arr, int page, int pagesize, Predicate<T> pred) {
         Iterator<T> i = Arrays.stream(arr).iterator();
         return paginate(i, page, pagesize, pred);
@@ -178,6 +219,16 @@ public class Algorithm {
         return paginate(i, page, pagesize, pred);
     }
 
+    /**
+     * Paginates elements in an iterator based on a predicate condition.
+     *
+     * @param iterator  The iterator to paginate.
+     * @param page      The page number (zero-based) to start pagination.
+     * @param pagesize  The number of elements per page.
+     * @param pred The predicate condition for pagination.
+     * @param <T>       The type of elements in the iterator.
+     * @return A list containing elements that match the pagination criteria.
+     */
     public static <T> List<T> paginate(Iterator<T> iterator, int page, int pagesize, Predicate<T> pred) {
         List<T> pageResult = new ArrayList<>();
         int count = 0;
