@@ -121,4 +121,14 @@ public class BusController implements BasicGetController<Bus>{
         return busTable;
     }
 
+
+    /**
+     * Retrieves a list of all buses.
+     *
+     * @return A List of all Bus objects.
+     */
+    @GetMapping("/getAllBus")
+    public List<Bus> getAllBus() {
+        return getJsonTable();
+    }
 }
