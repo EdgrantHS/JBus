@@ -62,7 +62,7 @@ public class PaymentController implements BasicGetController<Payment>{
             return new BaseResponse<>(false, "saldo tidak cukup", null);
         }
 
-        // cek apakah saldo melebihi harga tiket
+        // cek apakah ada jadwal
         if (!(Algorithm.<Schedule>exists(bus.schedules, e -> Objects.equals(e.departureSchedule, Timestamp.valueOf(departureDate))))){
             return new BaseResponse<>(false, "jadwal tidak tersedia", null);
         }
